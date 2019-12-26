@@ -1,28 +1,28 @@
 export default class LocalStoragePersister {
-  #key
+  #key;
 
   constructor(key) {
-    if (!key) throw new Error('key must be provided')
+    if (!key) throw new Error('key must be provided');
 
-    this.#key = key
+    this.#key = key;
   }
 
   save(data) {
-    const serializedData = JSON.stringify(data)
-    localStorage.setItem(this.#key, serializedData)
-    console.log('LocalStoragePersister.save()', serializedData)
-    return Promise.resolve()
+    const serializedData = JSON.stringify(data);
+    localStorage.setItem(this.#key, serializedData);
+    console.log('LocalStoragePersister.save()', serializedData);
+    return Promise.resolve();
   }
 
   load() {
-    const serializedData = localStorage.getItem(this.#key)
-    console.log('LocalStoragePersister.load()', serializedData)
-    let data
+    const serializedData = localStorage.getItem(this.#key);
+    console.log('LocalStoragePersister.load()', serializedData);
+    let data;
     if (serializedData == null) {
-      data = null
+      data = null;
     } else {
-      data = JSON.parse(serializedData)
+      data = JSON.parse(serializedData);
     }
-    return Promise.resolve(data)
+    return Promise.resolve(data);
   }
 }
